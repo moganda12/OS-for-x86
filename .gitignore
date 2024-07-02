@@ -1,0 +1,6 @@
+?ccls-cache
+build-gcc
+build-binutils
+gcc-10.3.0
+?config
+opt
