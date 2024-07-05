@@ -1,6 +1,5 @@
-run = "sh main.sh"
+run = "sh full.sh"
 onBoot = "export PREFIX=\"$HOME/OS-for-x86/opt/cross\" && export TARGET=i686-elf && export PATH=\"$PREFIX/bin:$PATH\""
-hidden = ["main.sh", "main.bin"]
 
 [nix]
 channel = "stable-21_11"

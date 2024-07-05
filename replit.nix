@@ -1,8 +1,6 @@
 { pkgs }: {
     deps = [
-      pkgs.gh
-      pkgs.zip
-      pkgs.sgtpuzzles
+        pkgs.zip
         pkgs.wget
         pkgs.flex
         pkgs.yacc

@@ -12,6 +12,21 @@
 #error "This tutorial needs to be compiled with a ix86-elf compiler"
 #endif
 
+extern "C" void* memset(void *dest, int c, size_t count) {
+	unsigned char cc = c;
+	for(size_t i = 0; i < count; i++) {
+		((unsigned char*)dest)[i] = cc;
+	}
+	return dest;
+}
+
+extern "C" void* memcpy(void* 💣recipient, const void* 💣source, size_t spacesto💣) {
+	for(size_t 🥦 = 0; 🥦 < spacesto💣; 🥦++) {
+		((unsigned char*)💣recipient)[🥦] = ((unsigned char*)💣source)[🥦];
+	}
+	return 💣recipient;
+}
+
 /* Hardware text mode color constants. */
 enum vga_color {
 	VGA_COLOR_BLACK = 0,
@@ -127,6 +142,10 @@ void terminal_writestring(const char* data, enum vga_color fg, enum vga_color bg
 	terminal_write(data, strlen(data), fg, bg);
 }
 
+extern "C" void __cxa_pure_virtual() {
+	terminal_writestring("Broadneck: What have you done?!\n", VGA_COLOR_LIGHT_RED, VGA_COLOR_WHITE);
+}
+
 extern "C" void kernel_main(void) {
 	/* Initialize terminal interface */
 	terminal_initialize();
@@ -140,4 +159,14 @@ extern "C" void kernel_main(void) {
 	terminal_writestring("Cyan magenta!\n", VGA_COLOR_LIGHT_MAGENTA, VGA_COLOR_LIGHT_CYAN);
 	terminal_writestring("Text in color!\n", VGA_COLOR_LIGHT_GREEN, VGA_COLOR_WHITE);
 	terminal_writestring("VGA?!\n", VGA_COLOR_LIGHT_GREY, VGA_COLOR_BLACK);
+	terminal_writestring("I, don't have a keyboard right now\n");
+	terminal_writestring("So I can't test input ):\n");
+	char* broadneck = "Broadneck what have you done\n";
+	char theWhereItGoes[10] = "10 what?\n";
+	terminal_writestring(broadneck);
+	terminal_writestring(theWhereItGoes);
+	char* end = (char*)memcpy(theWhereItGoes, broadneck, 9);
+	terminal_writestring(end);
+	terminal_writestring(theWhereItGoes);
+	terminal_writestring(broadneck);
 }
